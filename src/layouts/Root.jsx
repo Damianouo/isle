@@ -10,7 +10,7 @@ function Root() {
       <Header />
       <div className="grid grid-cols-[auto_1fr]">
         <Navbar />
-        <main className="relative grid">
+        <main className="relative grid justify-items-center">
           <PageTransition>{outlet}</PageTransition>
         </main>
       </div>

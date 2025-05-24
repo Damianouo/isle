@@ -11,7 +11,7 @@ function PageTransition({ children }) {
   return (
     <AnimatePresence mode="sync" initial={false}>
       <motion.div
-        className="grid size-full"
+        className="grid size-full p-4 border-4 max-w-[1100px]"
         variants={variants}
         initial="hidden"
         animate="visible"
