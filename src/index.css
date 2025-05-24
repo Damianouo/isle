@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+    themes: garden --default, dracula --prefersdark;
+    exclude: rootscrollgutter;
+}
+@theme {
+    --default-font-family: 'Nunito', sans-serif;
+    --default-transition-duration: 250ms;
+}
+@utility icon {
+    @apply inline-block size-6 md:size-8;
+}
+
+@utility btn {
+    height: auto;
+    padding-inline: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    padding: 8px;
+}
+
+@utility tooltip {
+    @apply block;
+}
+
+.active {
+    @apply bg-primary/70;
+}
