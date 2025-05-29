@@ -8,12 +8,16 @@ const result = [
   { id: "post5", title: "Your Daily Dose of Internet", author: "Daily Dose of Internet" },
 ];
 
-function SearchResult() {
+function SearchResult({ id }) {
   return (
     <ul className="menu rounded-box w-full text-lg">
       {result.map((item) => (
         <li key={item.id}>
-          <Link to={`/posts:${item.id}`} className="grid grid-cols-[1fr_auto] py-4">
+          <Link
+            to={`/posts/${item.id}`}
+            className="grid grid-cols-[1fr_auto] py-4"
+            onClick={() => document.getElementById(id).close()}
+          >
             <span className="line-clamp-1">{item.title}</span>
             <span className="text-base">{`--${item.author}`}</span>
           </Link>

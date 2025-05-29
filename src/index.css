@@ -5,10 +5,17 @@
     themes: garden --default, dracula --prefersdark;
     exclude: rootscrollgutter;
 }
+
 @theme {
     --default-font-family: 'Nunito', sans-serif;
     --default-transition-duration: 250ms;
+    --fontsize: 16px;
 }
+
+.active {
+    @apply bg-primary/70;
+}
+
 @utility icon {
     @apply inline-block size-6 md:size-8;
 }
@@ -25,6 +32,18 @@
     @apply block;
 }
 
-.active {
-    @apply bg-primary/70;
+@utility fieldset {
+    @apply text-sm;
+}
+
+@utility input {
+    --border: 2px;
+    @apply text-base transition focus-within:outline-none focus:outline-none;
+}
+
+@utility textarea {
+    --border: 2px;
+    resize: none;
+    overflow-y: hidden;
+    @apply transition focus-within:outline-none focus:outline-none;
 }

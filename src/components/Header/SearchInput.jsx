@@ -1,6 +1,6 @@
 function SearchInput() {
   return (
-    <label className="input w-full rounded-none border-0 border-b text-lg transition focus-within:outline-none focus:outline-none">
+    <label className="input w-full rounded-none border-0 border-b text-lg">
       <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <g
           strokeLinejoin="round"

@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import Root from "./layouts/Root.jsx";
 import Home from "./pages/Home/Home.jsx";
 import Posts from "./pages/Posts/Posts.jsx";
-import PrivatePosts from "./pages/PrivatePosts/PrivatePosts.jsx";
 import Post from "./pages/Post/Post.jsx";
 import Submit from "./pages/Submit/Submit.jsx";
 import Settings from "./pages/Settings/Settings.jsx";
@@ -14,9 +13,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "posts", element: <Posts /> },
-      { path: "post/:id", element: <Post /> },
-      { path: "privatePosts", element: <PrivatePosts /> },
-      { path: "privatePosts/:id", element: <Post /> },
+      { path: "posts/:id", element: <Post /> },
+      { path: "privatePosts", element: <Posts /> },
       { path: "submit", element: <Submit /> },
       { path: "settings", element: <Settings /> },
     ],

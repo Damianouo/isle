@@ -19,11 +19,11 @@ function Posts() {
 export default Posts;
 
 const postsData = [
-  { id: "postdata1", title: "You got a problem.", author: "Drifter", date: "5/24" },
-  { id: "postdata2", title: "Its never easy.", author: "NONAME", date: "5/25" },
-  { id: "postdata3", title: "I tried, but I failed.", author: "Drifter", date: "5/26" },
-  { id: "postdata4", title: "Miss the love Ive never had.", author: "Drifter", date: "5/27" },
-  { id: "postdata5", title: "We are so COOKED.", author: "NONAME", date: "5/28" },
+  { id: "post1", title: "You got a problem.", author: "Drifter", date: "5/24" },
+  { id: "post2", title: "Its never easy.", author: "NONAME", date: "5/25" },
+  { id: "post3", title: "I tried, but I failed.", author: "Drifter", date: "5/26" },
+  { id: "post4", title: "Miss the love Ive never had.", author: "Drifter", date: "5/27" },
+  { id: "post5", title: "We are so COOKED.", author: "NONAME", date: "5/28" },
 ];
 
 function PostsList() {
@@ -31,7 +31,7 @@ function PostsList() {
     <ul className="menu divide-base-content/30 w-auto divide-y text-base">
       {postsData.map((post) => (
         <li key={post.id}>
-          <Link to={`/post/${post.id}`} className="block">
+          <Link to={`/posts/${post.id}`} className="block">
             <h2 className="line-clamp-1 text-2xl font-bold">{post.title}</h2>
             <p className="text-base-content/70 flex items-center gap-2">
               <span>{post.author}</span>
