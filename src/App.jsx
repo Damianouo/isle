@@ -6,6 +6,7 @@ import Post from "./pages/Post/Post.jsx";
 import Submit from "./pages/Submit/Submit.jsx";
 import Settings from "./pages/Settings/Settings.jsx";
 import Login from "./pages/Login/Login.jsx";
+import SessionProvider from "./contexts/SessionContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <SessionProvider>
+      <RouterProvider router={router} />
+    </SessionProvider>
+  );
 }
 
 export default App;

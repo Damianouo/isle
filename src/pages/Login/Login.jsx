@@ -1,33 +1,39 @@
 import { useState } from "react";
 import { supabase } from "../../supabase-client.js";
+import { useSession } from "../../contexts/SessionContext.jsx";
 
 function Login() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
-  
+  const { session } = useSession();
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   const handleLogin = async () => {
-    const { data, error } = await supabase.auth.signInWithPassword(credentials);
+    const { error } = await supabase.auth.signInWithPassword(credentials);
     if (error) {
       console.log("[error]", error);
     }
-    console.log("[data]", data);
   };
 
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
       console.log("[error]", error);
+    } else {
+      console.log("logged out");
     }
   };
 
   const handleGetUser = async () => {
     const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    console.log(user);
+      data: { session },
+    } = await supabase.auth.getSession();
+    if (session) {
+      console.log(session.user);
+    } else {
+      console.log("no session");
+    }
   };
   return (
     <div className="flex flex-col items-center pt-32">
@@ -62,6 +68,19 @@ function Login() {
           Get User
         </button>
       </fieldset>
+
+      <p>
+        <span>id : </span>
+        <span>{session?.id || "no id"}</span>
+      </p>
+      <p>
+        <span>email : </span>
+        <span>{session?.email || "no email"}</span>
+      </p>
+      <p>
+        <span>is_anonymous : </span>
+        <span>{String(session?.is_anonymous)}</span>
+      </p>
     </div>
   );
 }
