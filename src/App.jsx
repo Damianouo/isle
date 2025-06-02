@@ -5,6 +5,7 @@ import Posts from "./pages/Posts/Posts.jsx";
 import Post from "./pages/Post/Post.jsx";
 import Submit from "./pages/Submit/Submit.jsx";
 import Settings from "./pages/Settings/Settings.jsx";
+import Login from "./pages/Login/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       { path: "privatePosts", element: <Posts /> },
       { path: "submit", element: <Submit /> },
       { path: "settings", element: <Settings /> },
+      { path: "login", element: <Login /> },
     ],
   },
 ]);

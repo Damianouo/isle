@@ -1,11 +1,15 @@
-import { Form, Link } from "react-router";
+import { Link } from "react-router";
 import { useState } from "react";
+import { supabase } from "../../supabase-client.js";
+import { toast } from "react-hot-toast";
 
 function Submit() {
   const [postContent, setPostContent] = useState(() => {
     const unsavedPostContent = localStorage.getItem("unsavedPostContent");
     if (unsavedPostContent) return JSON.parse(unsavedPostContent);
     return {
+      author: "NONAME",
+      is_private: false,
       title: "",
       content: "",
     };
@@ -20,13 +24,31 @@ function Submit() {
     if (target.name === "content") {
       autoResize(target);
     }
-    const nextPostContent = {
-      ...postContent,
-      [target.name]: target.value,
-    };
+
+    let nextPostContent;
+    if (target.name === "is_private") {
+      nextPostContent = {
+        ...postContent,
+        is_private: target.checked,
+      };
+    } else {
+      nextPostContent = {
+        ...postContent,
+        [target.name]: target.value,
+      };
+    }
     setPostContent(nextPostContent);
 
     localStorage.setItem("unsavedPostContent", JSON.stringify(nextPostContent));
+  };
+  const handleSubmit = async () => {
+    const toastId = toast.loading("Creating post...");
+    const { error } = await supabase.from("Posts").insert([postContent]).select();
+    if (error) {
+      toast.error(error.details, { id: toastId });
+    } else {
+      toast.success("Post created!", { id: toastId });
+    }
   };
 
   return (
@@ -35,18 +57,41 @@ function Submit() {
         <h1 className="my-6 text-4xl font-bold">Create Post</h1>
         <button className="btn btn-neutral">Drafts</button>
       </div>
-      <Form action="" method="post" className="space-y-4">
+      <form className="space-y-4">
         {/*Name*/}
         <fieldset className="fieldset">
           <legend className="fieldset-legend">Name</legend>
-          <input type="text" className="input" placeholder="Your Name" defaultValue="NONAME" />
+          <input
+            type="text"
+            className="input"
+            name="author"
+            placeholder="Your Name"
+            value={postContent.author}
+            onChange={handleChange}
+          />
           <p className="label">
-            You can save the default value for <b>Name</b> in
+            * You can save the default value for <b>Name</b> in
             <Link to="/settings" className="link link-secondary transition-colors">
               Settings
             </Link>
           </p>
         </fieldset>
+        {/*Private*/}
+        <div>
+          <div className="flex items-center gap-4">
+            <p className="">Private</p>
+            <input
+              type="checkbox"
+              name="is_private"
+              className="toggle toggle-secondary"
+              onChange={handleChange}
+              checked={postContent.is_private}
+            />
+          </div>
+          <p className="text-base-content/60 text-sm">
+            * Private posts are only visible to you and <b>Drifter</b>.
+          </p>
+        </div>
         {/*Title*/}
         <fieldset className="fieldset">
           <legend className="fieldset-legend">Title</legend>
@@ -70,10 +115,12 @@ function Submit() {
             onChange={handleChange}
           ></textarea>
         </fieldset>
-      </Form>
+      </form>
       {/*submit*/}
       <div className="mt-6 flex items-center justify-end gap-4">
-        <button className="btn btn-secondary">Create Post</button>
+        <button className="btn btn-secondary" onClick={handleSubmit}>
+          Create Post
+        </button>
         <button className="btn btn-neutral">Save Draft</button>
       </div>
     </div>
