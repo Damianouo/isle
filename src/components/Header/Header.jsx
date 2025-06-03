@@ -11,14 +11,6 @@ function Header() {
       <SearchBtn />
       <div className="flex items-center gap-2 md:gap-4">
         <ThemeChanger />
-        <Link to="/settings" className="avatar rounded-full transition-opacity hover:opacity-75">
-          <div className="icon rounded-full">
-            <img
-              src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
-              alt="avatar"
-            />
-          </div>
-        </Link>
       </div>
     </header>
   );

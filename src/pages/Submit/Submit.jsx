@@ -1,26 +1,24 @@
 import { Link } from "react-router";
-import { useState } from "react";
 import { supabase } from "../../supabase-client.js";
 import { toast } from "react-hot-toast";
+import useLocalStorage from "../../hooks/useLocalStorage.jsx";
+
+const initialPostContent = {
+  author: "NONAME",
+  is_private: false,
+  title: "",
+  content: "",
+};
+
+function autoResize(textarea) {
+  textarea.style.height = "auto";
+  textarea.style.height = textarea.scrollHeight + "px";
+}
 
 function Submit() {
-  const [postContent, setPostContent] = useState(() => {
-    const unsavedPostContent = localStorage.getItem("unsavedPostContent");
-    if (unsavedPostContent) return JSON.parse(unsavedPostContent);
-    return {
-      author: "NONAME",
-      is_private: false,
-      title: "",
-      content: "",
-    };
-  });
+  const [postContent, setPostContent] = useLocalStorage("unsavedPostContent", initialPostContent);
 
   const handleChange = ({ target }) => {
-    function autoResize(textarea) {
-      textarea.style.height = "auto";
-      textarea.style.height = textarea.scrollHeight + "px";
-    }
-
     if (target.name === "content") {
       autoResize(target);
     }
@@ -38,8 +36,6 @@ function Submit() {
       };
     }
     setPostContent(nextPostContent);
-
-    localStorage.setItem("unsavedPostContent", JSON.stringify(nextPostContent));
   };
   const handleSubmit = async () => {
     const toastId = toast.loading("Creating post...");

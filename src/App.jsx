@@ -6,7 +6,9 @@ import Post from "./pages/Post/Post.jsx";
 import Submit from "./pages/Submit/Submit.jsx";
 import Settings from "./pages/Settings/Settings.jsx";
 import Login from "./pages/Login/Login.jsx";
+import Drifter from "./pages/Drifter/Drifter.jsx";
 import SessionProvider from "./contexts/SessionContext.jsx";
+import PostPreferencesProvider from "./contexts/PostPreferencesContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,7 @@ const router = createBrowserRouter([
       { path: "submit", element: <Submit /> },
       { path: "settings", element: <Settings /> },
       { path: "login", element: <Login /> },
+      { path: "drifter", element: <Drifter /> },
     ],
   },
 ]);
@@ -27,7 +30,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <SessionProvider>
-      <RouterProvider router={router} />
+      <PostPreferencesProvider>
+        <RouterProvider router={router} />
+      </PostPreferencesProvider>
     </SessionProvider>
   );
 }

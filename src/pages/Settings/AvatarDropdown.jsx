@@ -1,8 +1,9 @@
 import { avatarImages } from "../../assets/images/avatars";
-import { useState } from "react";
+import { usePostPreferences } from "../../contexts/PostPreferencesContext.jsx";
 
 function AvatarDropdown() {
-  const [selectedAvatar, setSelectedAvatar] = useState("");
+  const { postPreferences } = usePostPreferences();
+  const { avatar } = postPreferences;
   return (
     <div className="dropdown w-fit">
       <div
@@ -10,15 +11,15 @@ function AvatarDropdown() {
         role="button"
         className="btn outline-primary btn-circle m-1 h-24 w-24 p-0 outline-2"
       >
-        {selectedAvatar.length > 0 ? (
-          <img src={selectedAvatar} alt="avatar image" className="size-full" />
+        {avatar?.length > 0 ? (
+          <img src={avatar} alt="avatar image" className="size-full" />
         ) : (
           <p>Choose</p>
         )}
       </div>
       <ul className="menu dropdown-content bg-base-200 rounded-box grid w-64 grid-cols-3 items-center justify-items-center gap-4 p-2 shadow-sm">
         {Array.from({ length: 9 }).map((v, i) => (
-          <AvatarItem key={i} image={avatarImages[i]} setSelectedAvatar={setSelectedAvatar} />
+          <AvatarItem key={i} image={avatarImages[i]} />
         ))}
       </ul>
     </div>
@@ -27,9 +28,10 @@ function AvatarDropdown() {
 
 export default AvatarDropdown;
 
-const AvatarItem = ({ image, setSelectedAvatar }) => {
+const AvatarItem = ({ image }) => {
+  const { setPostPreferences } = usePostPreferences();
   const handleClick = ({ target }) => {
-    setSelectedAvatar(target.src);
+    setPostPreferences((prev) => ({ ...prev, avatar: target.src }));
   };
   return (
     <li className="">

@@ -11,6 +11,9 @@
     --default-transition-duration: 250ms;
     --fontsize: 16px;
 }
+#user-panel.active {
+    @apply bg-secondary text-secondary-content;
+}
 
 .active {
     @apply bg-primary/70;
