@@ -36,6 +36,10 @@
     @apply text-sm;
 }
 
+@utility fieldset-legend {
+    @apply text-xl;
+}
+
 @utility input {
     --border: 2px;
     @apply text-base transition focus-within:outline-none focus:outline-none;

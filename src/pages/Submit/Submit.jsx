@@ -79,7 +79,7 @@ function Submit() {
         {/*Private*/}
         <div>
           <div className="flex items-center gap-4">
-            <p className="">Private</p>
+            <p className="text-xl">Private</p>
             <input
               type="checkbox"
               name="is_private"
