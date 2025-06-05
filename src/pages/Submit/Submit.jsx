@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { supabase } from "../../supabase-client.js";
 import { toast } from "react-hot-toast";
 import useLocalStorage from "../../hooks/useLocalStorage.jsx";
+import { useEffect, useRef } from "react";
 
 const initialPostContent = {
   author: "NONAME",
@@ -17,6 +18,13 @@ function autoResize(textarea) {
 
 function Submit() {
   const [postContent, setPostContent] = useLocalStorage("unsavedPostContent", initialPostContent);
+  const contentTextAreaRef = useRef(null);
+
+  useEffect(() => {
+    if (contentTextAreaRef.current) {
+      autoResize(contentTextAreaRef.current);
+    }
+  }, []);
 
   const handleChange = ({ target }) => {
     if (target.name === "content") {
@@ -109,6 +117,7 @@ function Submit() {
             placeholder="Share your thoughts"
             value={postContent.content}
             onChange={handleChange}
+            ref={contentTextAreaRef}
           ></textarea>
         </fieldset>
       </form>
