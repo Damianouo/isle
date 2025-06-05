@@ -7,7 +7,7 @@
 }
 
 @theme {
-    --default-font-family: 'Nunito', sans-serif;
+    --default-font-family: "Montserrat", "Noto Sans TC", sans-serif;
     --default-transition-duration: 250ms;
     --fontsize: 16px;
 }
