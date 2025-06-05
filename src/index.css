@@ -20,7 +20,7 @@
 }
 
 @utility icon {
-    @apply inline-block size-6 md:size-8;
+    @apply inline-block size-8;
 }
 
 @utility btn {
