@@ -4,7 +4,7 @@ import { supabase } from "../../supabase-client.js";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { useSession } from "../../contexts/SessionContext.jsx";
-import Accordion from "../../components/Accordion.jsx";
+import Accordion from "../../components/UI/Accordion.jsx";
 
 function Login() {
   const { session } = useSession();

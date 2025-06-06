@@ -90,8 +90,8 @@ function StyledNavLink({ to, icon, text, isOpen }) {
 
 function UserPanel({ isOpen }) {
   const { postPreferences } = usePostPreferences();
-  const { name, avatar } = postPreferences;
-  const displayName = name.length > 0 ? name : "Anonymous";
+  const { author, avatar } = postPreferences;
+  const displayName = author.length > 0 ? author : "Anonymous";
   const displayAvatar =
     avatar.length > 0 ? (
       <div className="avatar">

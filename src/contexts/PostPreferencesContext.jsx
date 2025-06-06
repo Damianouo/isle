@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 
 const PostPreferencesContext = createContext(null);
 const initialValue = {
-  name: "",
+  author: "",
   avatar: "",
 };
 

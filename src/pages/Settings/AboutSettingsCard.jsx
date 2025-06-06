@@ -1,4 +1,4 @@
-import Accordion from "../../components/Accordion.jsx";
+import Accordion from "../../components/UI/Accordion.jsx";
 
 function AboutSettingsCard() {
   return (
@@ -23,4 +23,5 @@ function AboutSettingsCard() {
     </fieldset>
   );
 }
+
 export default AboutSettingsCard;

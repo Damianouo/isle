@@ -20,8 +20,14 @@ function SettingsForm() {
       toast.error("Failed to logout, please try again later");
     } else {
       toast.success("Logged out successfully");
+      localStorage.removeItem("postPreferences");
+      localStorage.removeItem("unsavedPostContent");
       navigate("/", { replace: true });
     }
+  };
+
+  const handleSelectAvatar = ({ target }) => {
+    setPostPreferences((prev) => ({ ...prev, avatar: target.src }));
   };
   return (
     <div>
@@ -34,8 +40,8 @@ function SettingsForm() {
             type="text"
             className="input"
             placeholder="Enter Name"
-            name="name"
-            value={postPreferences.name}
+            name="author"
+            value={postPreferences.author}
             onChange={handleChange}
           />
         </fieldset>
@@ -44,8 +50,8 @@ function SettingsForm() {
           <legend className="fieldset-legend">Avatar</legend>
           <div className="flex items-center gap-4">
             <AvatarDropdown
-              postPreferences={postPreferences}
-              setPostPreferences={setPostPreferences}
+              selectedAvatar={postPreferences.avatar}
+              handleSelectAvatar={handleSelectAvatar}
             />
           </div>
         </fieldset>
