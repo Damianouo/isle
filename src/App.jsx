@@ -9,6 +9,8 @@ import Login from "./pages/Login/Login.jsx";
 import Drifter from "./pages/Drifter/Drifter.jsx";
 import SessionProvider from "./contexts/SessionContext.jsx";
 import PostPreferencesProvider from "./contexts/PostPreferencesContext.jsx";
+import { postListLoader } from "./loaders/postListLoader.js";
+import { postLoader } from "./loaders/postLoader.js";
 
 const router = createBrowserRouter([
   {
@@ -16,8 +18,8 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       { index: true, element: <Home /> },
-      { path: "posts", element: <Posts /> },
-      { path: "posts/:id", element: <Post /> },
+      { path: "posts", element: <Posts />, loader: postListLoader },
+      { path: "post/:id", element: <Post />, loader: postLoader },
       { path: "privatePosts", element: <Posts /> },
       { path: "submit", element: <Submit /> },
       { path: "settings", element: <Settings /> },

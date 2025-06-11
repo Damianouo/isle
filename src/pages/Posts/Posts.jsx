@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import DominusThrax from "../../assets/images/DominusThrax.png";
 
 function Posts() {
@@ -18,29 +18,28 @@ function Posts() {
 
 export default Posts;
 
-const postsData = [
-  { id: "post1", title: "You got a problem.", author: "Drifter", date: "5/24" },
-  { id: "post2", title: "Its never easy.", author: "NONAME", date: "5/25" },
-  { id: "post3", title: "I tried, but I failed.", author: "Drifter", date: "5/26" },
-  { id: "post4", title: "Miss the love Ive never had.", author: "Drifter", date: "5/27" },
-  { id: "post5", title: "We are so COOKED.", author: "NONAME", date: "5/28" },
-];
-
 function PostsList() {
+  const postsData = useLoaderData();
   return (
     <ul className="menu divide-base-content/30 w-auto divide-y text-base">
-      {postsData.map((post) => (
-        <li key={post.id}>
-          <Link to={`/posts/${post.id}`} className="block">
-            <h2 className="line-clamp-1 text-2xl font-bold">{post.title}</h2>
-            <p className="text-base-content/70 flex items-center gap-2">
-              <span>{post.author}</span>
-              <span className="bg-base-content/70 size-0.75 rounded-full"></span>
-              <span>{post.date}</span>
-            </p>
-          </Link>
+      {postsData ? (
+        postsData.map((post) => (
+          <li key={post.id}>
+            <Link to={`/post/${post.id}`} className="block">
+              <h2 className="line-clamp-1 text-2xl font-bold">{post.title}</h2>
+              <p className="text-base-content/70 flex items-center gap-2">
+                <span>{post.author}</span>
+                <span className="bg-base-content/70 size-0.75 rounded-full"></span>
+                <span>{post.created_at}</span>
+              </p>
+            </Link>
+          </li>
+        ))
+      ) : (
+        <li>
+          <p>No Post found</p>
         </li>
-      ))}
+      )}
     </ul>
   );
 }

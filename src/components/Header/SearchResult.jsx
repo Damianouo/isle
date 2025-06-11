@@ -14,7 +14,7 @@ function SearchResult({ id }) {
       {result.map((item) => (
         <li key={item.id}>
           <Link
-            to={`/posts/${item.id}`}
+            to={`/post/${item.id}`}
             className="grid grid-cols-[1fr_auto] py-4"
             onClick={() => document.getElementById(id).close()}
           >

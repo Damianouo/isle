@@ -35,7 +35,8 @@ function PostForm() {
   const { session } = useSession();
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const toastId = toast.loading("Creating post...");
     const { data, error } = await supabase
       .from("Posts")
@@ -46,7 +47,7 @@ function PostForm() {
     } else {
       toast.success("Post created!", { id: toastId });
       localStorage.removeItem("unsavedPostContent");
-      navigate(`/posts/${data[0].id}`);
+      navigate(`/post/${data[0].id}`);
     }
   };
 
