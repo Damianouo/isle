@@ -1,7 +1,7 @@
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router";
 import DominusThrax from "../../assets/images/DominusThrax.png";
 
-function Posts() {
+function Posts({ loaderData: postsData }) {
   return (
     <div className="">
       <div className="skeleton mb-4 aspect-[3/1] overflow-hidden md:mb-8 md:aspect-[4/1]">
@@ -11,15 +11,14 @@ function Posts() {
           className="size-full object-cover object-[length:0_60%] md:object-[length:0_70%]"
         />
       </div>
-      <PostsList />
+      <PostsList postsData={postsData} />
     </div>
   );
 }
 
 export default Posts;
 
-function PostsList() {
-  const postsData = useLoaderData();
+function PostsList({ postsData }) {
   return (
     <ul className="menu divide-base-content/30 w-auto divide-y text-base">
       {postsData ? (

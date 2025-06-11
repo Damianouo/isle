@@ -1,11 +1,9 @@
-import { useOutlet } from "react-router";
 import Header from "../components/Header/Header.jsx";
 import Navbar from "../components/Navbar/Navbar.jsx";
 import PageTransition from "./PageTransition.jsx";
 import { Toaster } from "react-hot-toast";
 
 function Root() {
-  const outlet = useOutlet();
   return (
     <>
       <div className="grid h-screen grid-rows-[auto_1fr]">
@@ -13,7 +11,7 @@ function Root() {
         <div className="grid grid-cols-[auto_1fr]">
           <Navbar />
           <main className="relative grid justify-items-center">
-            <PageTransition>{outlet}</PageTransition>
+            <PageTransition />
           </main>
         </div>
       </div>

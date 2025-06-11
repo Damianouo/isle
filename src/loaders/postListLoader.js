@@ -11,7 +11,6 @@ export const postListLoader = async () => {
     toast.error("Failed to load posts, please refresh the page");
     return null;
   } else {
-    console.log(data);
     return data;
   }
 };

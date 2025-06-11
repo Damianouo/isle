@@ -1,13 +1,16 @@
 import { AnimatePresence, motion } from "motion/react";
-import { useLocation } from "react-router";
+import { useLocation, useMatches } from "react-router";
 
 const variants = {
   visible: { opacity: 1, position: "static" },
   hidden: { opacity: 0, position: "absolute" },
 };
 
-function PageTransition({ children }) {
+function PageTransition() {
   const location = useLocation();
+  const matches = useMatches();
+  const currentMatch = matches[matches.length - 1];
+  const ComponentToRender = currentMatch?.handle?.Component;
   return (
     <AnimatePresence mode="sync" initial={false}>
       <motion.div
@@ -19,7 +22,7 @@ function PageTransition({ children }) {
         key={location.pathname}
         transition={{ duration: 0.3, delay: 0.1 }}
       >
-        {children}
+        <ComponentToRender loaderData={currentMatch.data} />
       </motion.div>
     </AnimatePresence>
   );
