@@ -54,3 +54,7 @@
     overflow-y: hidden;
     @apply transition focus-within:outline-none focus:outline-none;
 }
+
+@utility prose {
+    @apply prose-p:text-base-content
+}

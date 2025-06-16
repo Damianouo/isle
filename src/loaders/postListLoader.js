@@ -1,16 +1,24 @@
 import { supabase } from "../supabase-client.js";
 import { toast } from "react-hot-toast";
 
-export const postListLoader = async () => {
-  const { data, error } = await supabase
-    .from("Posts")
-    .select("id,created_at,title,author,avatar")
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    toast.error("Failed to load posts, please refresh the page");
-    return null;
-  } else {
-    return data;
-  }
+export const loader = () => {
+  const postsPromise = new Promise((resolve, reject) => {
+    supabase
+      .from("Posts")
+      .select("id,created_at,title,author,avatar")
+      .order("created_at", { ascending: false })
+      .then(({ data, error }) => {
+        if (error) {
+          toast.error("Fail to load posts, please refresh the page");
+          reject(error);
+        } else {
+          resolve(data);
+        }
+      })
+      .catch((err) => {
+        toast.error("Fail to load posts, please refresh the page");
+        reject(err);
+      });
+  });
+  return { postsData: postsPromise };
 };
