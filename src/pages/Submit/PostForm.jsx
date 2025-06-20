@@ -53,11 +53,11 @@ function PostForm() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <h1 className="my-6 text-4xl font-bold">Create Post</h1>
-        <button className="btn btn-neutral">Drafts</button>
+      <div className="mb-6 flex items-center justify-between">
+        <h1 className="text-4xl font-bold">Create Post</h1>
+        <button className="btn btn-secondary btn-soft btn-sm">Drafts</button>
       </div>
-      <form className="space-y-4">
+      <form className="space-y-4 px-4">
         <PostAuthorFields postAuthor={postAuthor} setPostAuthor={setPostAuthor} />
         <PostContentFields postContent={postContent} setPostContent={setPostContent} />
         {/*submit*/}

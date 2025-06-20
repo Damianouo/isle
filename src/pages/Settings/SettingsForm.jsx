@@ -32,7 +32,7 @@ function SettingsForm() {
   return (
     <div>
       <h1 className="mb-6 text-4xl font-bold">Settings</h1>
-      <div className="space-y-8 px-4">
+      <div className="space-y-4 px-4">
         {/*Name*/}
         <fieldset className="fieldset">
           <legend className="fieldset-legend">Preferred Name</legend>

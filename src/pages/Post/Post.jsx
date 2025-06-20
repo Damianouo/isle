@@ -24,7 +24,7 @@ function PostContent({ postData }) {
   return (
     <>
       {post ? (
-        <div className="prose prose-img:m-0 py-8">
+        <div className="prose prose-img:m-0 mx-auto py-8">
           <div className="mb-6 flex items-center gap-2">
             <div className="avatar">
               <div className="w-8 rounded-full">
@@ -50,8 +50,8 @@ function PostContent({ postData }) {
           ))}
         </div>
       ) : (
-        <div className="prose pt-4">
-          <p>
+        <div className="prose mx-auto py-8">
+          <p className="mb-6 h-8 content-center">
             From <b>Drifter</b>
           </p>
           <h1>The post you're looking for no longer exists.</h1>
@@ -64,7 +64,7 @@ function PostContent({ postData }) {
 
 function PostContentSkeleton() {
   return (
-    <div className="prose space-y-8 py-8">
+    <div className="prose mx-auto w-full space-y-8 py-8">
       <div className="skeleton h-8 w-40"></div>
       <div className="skeleton h-10 w-4/5"></div>
       <div className="skeleton h-100 w-full"></div>

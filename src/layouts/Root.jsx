@@ -8,9 +8,9 @@ function Root() {
     <>
       <div className="grid h-screen grid-rows-[auto_1fr]">
         <Header />
-        <div className="grid grid-cols-[auto_1fr]">
+        <div className="grid grid-cols-[auto_1fr] overflow-y-auto">
           <Navbar />
-          <main className="relative grid justify-items-center">
+          <main className="relative grid h-full justify-items-center overflow-y-auto">
             <PageTransition />
           </main>
         </div>
