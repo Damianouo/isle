@@ -1,12 +1,13 @@
 import { Suspense, useMemo } from "react";
 import { Await } from "react-router";
 import { formatDate, formatTime } from "../../utils/formatDateTime.js";
+import PostsError from "../Error/PostsError.jsx";
 
 function Post({ loaderData }) {
   const { postData } = loaderData;
   return (
     <Suspense fallback={<PostContentSkeleton />}>
-      <Await resolve={postData}>
+      <Await resolve={postData} errorElement={<PostsError />}>
         {(postData) => <PostContent postData={postData}></PostContent>}
       </Await>
     </Suspense>
@@ -18,8 +19,8 @@ export default Post;
 function PostContent({ postData }) {
   const post = postData[0];
   const paragraphs = post?.content.split(/\r?\n/);
-  const displayDate = useMemo(() => formatDate(post.created_at), [post.created_at]);
-  const displayTime = useMemo(() => formatTime(post.created_at), [post.created_at]);
+  const displayDate = useMemo(() => formatDate(post?.created_at), [post?.created_at]);
+  const displayTime = useMemo(() => formatTime(post?.created_at), [post?.created_at]);
   return (
     <>
       {post ? (

@@ -10,11 +10,14 @@ import Drifter from "./pages/Drifter/Drifter.jsx";
 import SessionProvider from "./contexts/SessionContext.jsx";
 import PostPreferencesProvider from "./contexts/PostPreferencesContext.jsx";
 import { defineLazyRoute } from "./utils/defineLazyRoute.js";
+import RootError from "./pages/Error/RootError.jsx";
+import PostsError from "./pages/Error/PostsError.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <RootError />,
     children: [
       {
         index: true,
@@ -23,6 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "posts",
+        errorElement: <PostsError />,
         lazy: defineLazyRoute(
           import("./pages/Posts/Posts.jsx"),
           import("./loaders/postListLoader.js"),
@@ -31,11 +35,13 @@ const router = createBrowserRouter([
       },
       {
         path: "post/:id",
+        errorElement: <PostsError />,
         lazy: defineLazyRoute(import("./pages/Post/Post.jsx"), import("./loaders/postLoader.js")),
         handle: { Component: Post },
       },
       {
         path: "private-posts",
+        errorElement: <PostsError />,
         lazy: defineLazyRoute(
           import("./pages/Posts/Posts.jsx"),
           import("./loaders/postListLoader.js"),

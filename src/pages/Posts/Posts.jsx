@@ -2,6 +2,7 @@ import { Await, Link } from "react-router";
 import DominusThrax from "../../assets/images/DominusThrax.png";
 import { Suspense } from "react";
 import { formatDate } from "../../utils/formatDateTime.js";
+import PostsError from "../Error/PostsError.jsx";
 
 function Posts({ loaderData }) {
   const { postsData } = loaderData;
@@ -15,7 +16,9 @@ function Posts({ loaderData }) {
         />
       </div>
       <Suspense fallback={<PostsListSkeleton />}>
-        <Await resolve={postsData}>{(postsData) => <PostsList postsData={postsData} />}</Await>
+        <Await resolve={postsData} errorElement={<PostsError />}>
+          {(postsData) => <PostsList postsData={postsData} />}
+        </Await>
       </Suspense>
     </div>
   );
