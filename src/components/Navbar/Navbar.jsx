@@ -42,7 +42,7 @@ function Navbar() {
         <ul>
           <StyledNavLink to="/posts" icon={<PostIcon />} text="Posts" isOpen={isOpen} />
           <StyledNavLink
-            to="/privatePosts"
+            to="/private-posts"
             icon={<PrivatePostIcon />}
             text="Private Posts"
             isOpen={isOpen}

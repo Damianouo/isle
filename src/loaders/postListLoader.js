@@ -1,22 +1,29 @@
 import { supabase } from "../supabase-client.js";
-import { toast } from "react-hot-toast";
 
-export const loader = () => {
+export const loader = ({ request }) => {
+  const url = new URL(request.url);
+  const isFetchingPrivate = url.pathname === "/private-posts";
   const postsPromise = new Promise((resolve, reject) => {
-    supabase
+    let query = supabase
       .from("Posts")
-      .select("id,created_at,title,author,avatar")
-      .order("created_at", { ascending: false })
+      .select("id,created_at,title,author,avatar,is_private")
+      .order("created_at", { ascending: false });
+
+    if (isFetchingPrivate) {
+      query = query.eq("is_private", true);
+    } else {
+      query = query.eq("is_private", false);
+    }
+
+    query
       .then(({ data, error }) => {
         if (error) {
-          toast.error("Fail to load posts, please refresh the page");
           reject(error);
         } else {
           resolve(data);
         }
       })
       .catch((err) => {
-        toast.error("Fail to load posts, please refresh the page");
         reject(err);
       });
   });

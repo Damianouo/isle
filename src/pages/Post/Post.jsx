@@ -40,6 +40,7 @@ function PostContent({ postData }) {
                 {displayDate}
               </span>
             </span>
+            {post.is_private && <span className="badge badge-soft badge-primary">Private</span>}
           </div>
           <h1>{post.title}</h1>
 

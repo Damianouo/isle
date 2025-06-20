@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         handle: { Component: Post },
       },
       {
-        path: "privatePosts",
+        path: "private-posts",
         lazy: defineLazyRoute(
           import("./pages/Posts/Posts.jsx"),
           import("./loaders/postListLoader.js"),
