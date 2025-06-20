@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from "motion/react";
 import { useLocation, useMatches } from "react-router";
 
 const variants = {
-  visible: { opacity: 1, position: "static" },
-  hidden: { opacity: 0, position: "absolute" },
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
 };
 
 function PageTransition() {
@@ -12,7 +12,7 @@ function PageTransition() {
   const currentMatch = matches[matches.length - 1];
   const ComponentToRender = currentMatch?.handle?.Component;
   return (
-    <AnimatePresence mode="sync" initial={false}>
+    <AnimatePresence mode="popLayout" initial={false}>
       <motion.div
         className="grid size-full max-w-[1200px] p-2 sm:px-8"
         variants={variants}
