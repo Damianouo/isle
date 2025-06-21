@@ -14,7 +14,7 @@ function PageTransition() {
   return (
     <AnimatePresence mode="popLayout" initial={false}>
       <motion.div
-        className="grid size-full max-w-[1200px] p-2 sm:px-8"
+        className="grid size-full max-w-[1200px] p-4 sm:px-8"
         variants={variants}
         initial="hidden"
         animate="visible"
