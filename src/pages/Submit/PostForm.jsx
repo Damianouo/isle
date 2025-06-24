@@ -53,19 +53,15 @@ function PostForm() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-4xl font-bold">Create Post</h1>
-        <button className="btn btn-secondary btn-soft btn-sm">Drafts</button>
-      </div>
+      <h1 className="mb-6 text-4xl font-bold">Create Post</h1>
       <form className="space-y-4 px-4">
         <PostAuthorFields postAuthor={postAuthor} setPostAuthor={setPostAuthor} />
         <PostContentFields postContent={postContent} setPostContent={setPostContent} />
         {/*submit*/}
-        <div className="mt-6 flex items-center justify-end gap-4">
+        <div className="mt-6 flex items-center justify-end">
           <button className="btn btn-secondary" onClick={handleSubmit}>
             Create Post
           </button>
-          <button className="btn btn-neutral">Save Draft</button>
         </div>
       </form>
     </div>

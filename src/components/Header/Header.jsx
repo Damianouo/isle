@@ -42,7 +42,7 @@ function NavbarDrawer() {
         {/* Page content here */}
         <label
           htmlFor="navbar-drawer"
-          className="drawer-button tooltip tooltip-right btn btn-ghost hover:bg-neutral p-0"
+          className="drawer-button tooltip tooltip-right btn btn-ghost hover:text-base-content/70 p-0"
           data-tip={drawerIsOpen ? "Collapse" : "Expand"}
           onClick={() => setDrawerIsOpen((prev) => !prev)}
         >
