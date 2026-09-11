@@ -63,6 +63,9 @@
   --ui-border: #45475a;
 }
 
+html{
+  scrollbar-gutter: stable;
+}
 body {
   font-family: var(--font-sans)
 }
