@@ -10,7 +10,7 @@ const statIcons = { like: 'i-lucide-heart', reply: 'i-lucide-message-circle', re
 </script>
 
 <template>
-  <section class="border-b pt-4">
+  <section class="py-4">
     <div class="mb-3 flex items-center gap-4">
       <UAvatar
         :src="avatarImage[post.imgSrc as keyof typeof avatarImage]"
@@ -25,7 +25,7 @@ const statIcons = { like: 'i-lucide-heart', reply: 'i-lucide-message-circle', re
       {{ post.text }}
     </p>
 
-    <div class="flex items-center gap-6 py-4 ">
+    <div class="mt-4 flex items-center gap-6 ">
       <span
         v-for="(value, key) in statIcons"
         :key="key"

@@ -89,6 +89,7 @@ faster-whisper 89.2% → 95.0%。
         v-for="post in postsData"
         :key="post.id"
         :to="`posts/${post.id}`"
+        class="block not-first:border-t first:md:mt-2"
       >
         <PostCard
           :post="post"
