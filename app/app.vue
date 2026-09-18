@@ -6,37 +6,64 @@ const open = ref(true);
 
 const colorMode = useColorMode();
 
-function getItems() {
-  return [
-    {
-      label: 'Posts',
-      icon: 'i-lucide-square-chart-gantt',
-      to: '/posts',
-    },
-    {
-      label: 'New Post',
-      icon: 'i-lucide-square-pen',
-      onSelect: () => {},
-    },
-    {
-      label: 'Messages',
-      icon: 'i-lucide-send-horizontal',
-      badge: '4',
-      to: '/messages',
-    },
-    {
-      label: 'Saved Threads',
-      icon: 'i-lucide-bookmark',
-      badge: '12',
-      to: '/saved-threads',
-    },
-    {
-      label: 'Bug Report',
-      icon: 'i-lucide-inbox',
-      to: '/bug-report',
-    },
-  ] satisfies NavigationMenuItem[];
-}
+const route = useRoute();
+
+const isActive = (to: string) =>
+  route.path === to || route.path.startsWith(`${to}/`);
+
+const navigationMenuItem = [
+  {
+    label: 'Posts',
+    icon: 'i-lucide-square-chart-gantt',
+    to: '/posts',
+  },
+  {
+    label: 'New Post',
+    icon: 'i-lucide-square-pen',
+    onSelect: () => {},
+  },
+  {
+    label: 'Messages',
+    icon: 'i-lucide-send-horizontal',
+    badge: '4',
+    to: '/messages',
+  },
+  {
+    label: 'Saved Threads',
+    icon: 'i-lucide-bookmark',
+    badge: '12',
+    to: '/saved-threads',
+  },
+  {
+    label: 'Bug Report',
+    icon: 'i-lucide-inbox',
+    to: '/bug-report',
+  },
+] satisfies NavigationMenuItem[];
+
+const mobileNavigationItem = [
+  {
+    icon: 'i-lucide-square-chart-gantt',
+    to: '/posts',
+  },
+  {
+    icon: 'i-lucide-send-horizontal',
+    to: '/messages',
+  },
+  {
+    icon: 'i-lucide-square-pen',
+    onSelect: () => {},
+    class: 'bg-elevated',
+  },
+  {
+    icon: 'i-lucide-bookmark',
+    to: '/saved-threads',
+  },
+  {
+    icon: 'i-lucide-user',
+    to: '/profile',
+  },
+] satisfies NavigationMenuItem[];
 
 const user = ref({
   name: 'Damian',
@@ -122,7 +149,7 @@ const userItems = computed<DropdownMenuItem[][]>(() => [
       <template #header>
         <NuxtLink
           to="/"
-          class="focus-visible:outline-3 outline-primary/25 flex font-bold text-4xl gap-4 items-center rounded-md p-1 my-5 h-12"
+          class="my-5 flex h-12 items-center gap-4 rounded-md p-1 text-4xl font-bold outline-primary/25 focus-visible:outline-3"
         >
           <img
             src="assets/images/isle-logo.webp"
@@ -135,7 +162,7 @@ const userItems = computed<DropdownMenuItem[][]>(() => [
       <template #default="{ state }">
         <UNavigationMenu
           :collapsed="state==='collapsed'"
-          :items="getItems()"
+          :items="navigationMenuItem"
           orientation="vertical"
           :ui="{ link: 'text-base p-1.5 overflow-hidden gap-2.5', linkLeadingIcon: 'size-6' }"
         />
@@ -155,7 +182,7 @@ const userItems = computed<DropdownMenuItem[][]>(() => [
             variant="ghost"
             size="xl"
             square
-            class="w-full p-1.5 data-[state=open]:bg-elevated overflow-hidden"
+            class="w-full overflow-hidden p-1.5 data-[state=open]:bg-elevated"
             :ui="{
               trailingIcon: 'text-dimmed ms-auto',
             }"
@@ -164,49 +191,93 @@ const userItems = computed<DropdownMenuItem[][]>(() => [
       </template>
     </USidebar>
 
-    <div class="flex-1 relative p-2">
-      <header class="block md:hidden sticky top-0 h-[var(--ui-header-height)] flex justify-center items-center border-b">
+    <div class="relative flex-1 md:p-2">
+      <header class="sticky top-0 z-50 grid grid-cols-[1fr_auto_1fr] items-center justify-items-start bg-default/95 p-2 backdrop-blur md:hidden">
+        <UDropdownMenu
+          :items="userItems"
+          :content="{ align: 'center', collisionPadding: 12 }"
+          :ui="{ content: 'w-(--reka-dropdown-menu-trigger-width)  min-w-48 ' }"
+        >
+          <UButton
+            icon="i-lucide-menu"
+            color="neutral"
+            variant="ghost"
+          />
+        </UDropdownMenu>
+
         <NuxtLink
           to="/"
-          class="focus-visible:outline-3 outline-primary/25 flex font-bold text-4xl gap-4 items-center rounded-md p-1 h-12"
+          class="flex h-12 items-center gap-4 rounded-md p-1 text-4xl font-bold outline-primary/25 focus-visible:outline-3"
         >
           <img
             src="assets/images/isle-logo.webp"
             class="size-10 shrink-0"
           >
         </NuxtLink>
+        <UColorModeButton class="justify-self-end" />
       </header>
+
+      <USeparator class="md:hidden" />
       <UButton
-        class="hidden md:block absolute top-4 left-4 lg:-left-4 z-9999"
+        class="absolute top-4 left-4 z-9999 hidden md:block lg:-left-4"
         icon="i-lucide-panel-left"
         color="neutral"
         variant="subtle"
         aria-label="Toggle sidebar"
         @click="open = !open"
       />
-      <UMain class="min-h-[calc(100vh-100px)] md:p-3 grid">
+
+      <UMain class="relative grid min-h-[calc(100vh-121px)] grid-rows-[1fr_auto] md:min-h-[calc(100vh-72px)] md:p-3">
         <NuxtPage />
+        <nav
+          class="sticky inset-x-0 bottom-0 z-50 block h-fit bg-default/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden"
+        >
+          <div class="grid grid-cols-5 gap-1 p-2">
+            <template v-for="item in mobileNavigationItem">
+              <UButton
+                v-if="!item?.to"
+                :key="item.icon"
+                :icon="item.icon"
+                variant="ghost"
+                color="neutral"
+                class="flex items-center justify-center bg-elevated text-dimmed hover:text-default"
+                :ui="{
+                  leadingIcon: 'size-7',
+                }"
+              />
+
+              <UButton
+                v-else
+                :key="item.to"
+                :to="item.to"
+                variant="ghost"
+                color="neutral"
+                :class="[
+                  'flex items-center justify-center',
+                  isActive(item.to) ? 'bg-primary/10 text-primary':'text-dimmed hover:text-default',
+                ]"
+              >
+                <UIcon
+                  :name="item.icon"
+                  class="pointer-events-none size-7"
+                />
+              </UButton>
+            </template>
+          </div>
+        </nav>
       </UMain>
       <USeparator
         icon="i-lucide-shell"
       />
 
-      <UFooter>
-        <template #left>
+      <UFooter
+        class="p-0"
+        :ui="{ container: 'p-2 md:p-2 lg:p-2', left: 'mt-0', center: 'mt-0', right: 'mt-0' }"
+      >
+        <template #default>
           <p class="text-sm text-muted">
             Isle • © {{ new Date().getFullYear() }}
           </p>
-        </template>
-
-        <template #right>
-          <UButton
-            to="https://github.com/nuxt-ui-templates/starter"
-            target="_blank"
-            icon="i-simple-icons-github"
-            aria-label="GitHub"
-            color="neutral"
-            variant="ghost"
-          />
         </template>
       </UFooter>
     </div>
