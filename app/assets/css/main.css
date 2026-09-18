@@ -63,10 +63,15 @@
   --ui-border: #45475a;
 }
 
+@layer base{
+  * {
+    @apply border-default outline-default;
+  }
 
-body {
-  font-family: var(--font-sans)
-}
+  html,
+  body {
+    @apply bg-default text-default text-justify font-sans;
+  }
 
 button:not(:disabled),
 [role="button"]:not(:disabled) {
@@ -88,4 +93,5 @@ button:not(:disabled),
 *::-webkit-scrollbar-track,
 *::-webkit-scrollbar-corner {
   background: transparent;
+}
 }

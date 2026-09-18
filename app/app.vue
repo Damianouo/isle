@@ -164,7 +164,7 @@ const userItems = computed<DropdownMenuItem[][]>(() => [
           :collapsed="state==='collapsed'"
           :items="navigationMenuItem"
           orientation="vertical"
-          :ui="{ link: 'text-base p-1.5 overflow-hidden gap-2.5', linkLeadingIcon: 'size-6' }"
+          :ui="{ link: 'text-base p-2 overflow-hidden gap-2.5', linkLeadingIcon: 'size-6' }"
         />
       </template>
 
