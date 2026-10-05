@@ -8,12 +8,12 @@ import PostCard from '~/features/post/PostCard.vue';
     <h1 class="hidden px-4 text-3xl font-bold md:mb-4 md:block md:px-6">
       Posts
     </h1>
-    <div class="rounded-3xl px-4 md:border md:px-6">
+    <div class="rounded-3xl md:border md:py-2">
       <NuxtLink
         v-for="post in postsData"
         :key="post.id"
         :to="`posts/${post.id}`"
-        class="block not-first:border-t first:md:mt-2"
+        class="block not-first:border-t"
       >
         <PostCard
           :post="post"

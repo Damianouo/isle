@@ -74,4 +74,72 @@ faster-whisper 89.2% → 95.0%。
   reply: 4,
   repost: 1,
   share: 29,
+}, {
+  id: '@leileiwu-DeEmqK8o1FF',
+  url: 'https://www.threads.com/@leileiwu/post/DeEmqK8o1FF',
+  sourceUrl: 'https://www.threads.com/@leileiwu/post/DeEmqK8o1FF',
+  type: 'post',
+  imgSrc: 'frog',
+  author: 'leileiwu',
+  published_at: '2026-10-04 13:40:00+00',
+  text: `上一份工作剛升職就辭職，跟英國老闆解釋我因為私人原因需要搬回台灣一陣子，他提出讓我先遠距離工作看看（結果持續了四年）。第一年結束的時候老闆說他注意到我的年假完全沒動，我說「因為我的狀況已經非常輕鬆了，也常常一邊旅行一邊在工作，所以我覺得我不用再休假了」。老闆說「不行，休假很重要，就算你只是待在家，不看手機不回email也是充電。今年的年假延到明年，請你好好安排時間和項目，把它用完。」
+由奢入儉難，這讓我接下來在台灣想要找工作變得很被動。
+`,
+  tags: ['discussion', 'work', 'life'],
+  like: 12800,
+  reply: 99,
+  repost: 77,
+  share: 249,
+},
+{
+  id: '@ch.lin_0928-DeEr8LGlCug',
+  url: 'https://www.threads.com/@ch.lin_0928/post/DeEr8LGlCug',
+  sourceUrl: 'https://www.threads.com/@leileiwu/post/DeEmqK8o1FF',
+  type: 'reply',
+  imgSrc: 'monkey',
+  author: 'ch.lin_0928',
+  published_at: '2026-10-04 18:00:00+00',
+  text: `當初在美國第一天上班也是隔天就跟主管請假
+原因是傢俱送到了，我要組裝床不然晚上沒得睡
+後來的兩年間他也問過好幾次我怎麼都不請假
+但其實根本請不完，除了基本時數外還會根據上班時數累積，我又常加班所以休假累積特別快
+回台灣⋯ 滿半年後才給三天😀
+`,
+  tags: ['discussion', 'work', 'life'],
+  like: 1000,
+  reply: 2,
+  repost: 0,
+  share: 11,
+},
+{
+  id: '@eerieree-DeEunrfAYJJ',
+  url: 'https://www.threads.com/@eerieree/post/DeEunrfAYJJ',
+  sourceUrl: 'https://www.threads.com/@leileiwu/post/DeEmqK8o1FF',
+  type: 'reply',
+  imgSrc: 'panda',
+  author: 'eerieree',
+  published_at: '2026-10-04 18:00:00+00',
+  text: `台灣什麼都好，就是薪資結構、職場環境、勞工權益和資方腦袋還差了好幾截好幾截⋯⋯
+`,
+  tags: ['discussion', 'work', 'life'],
+  like: 603,
+  reply: 3,
+  repost: 0,
+  share: 0,
+},
+{
+  id: '@zila_summer-DeE7GDpEpzv',
+  url: 'https://www.threads.com/@zila_summer/post/DeE7GDpEpzv',
+  sourceUrl: 'https://www.threads.com/@leileiwu/post/DeEmqK8o1FF',
+  type: 'reply',
+  imgSrc: 'rabbit',
+  author: 'zila_summer',
+  published_at: '2026-10-04 19:00:00+00',
+  text: `我剛在英國工作時常忘了休假，結果快接近6月時瘋狂收到系統郵件警告我年假累積過多，最後還驚動我老闆來私訊我為什麼都不休假🤣
+`,
+  tags: ['discussion', 'work', 'life'],
+  like: 114,
+  reply: 1,
+  repost: 0,
+  share: 0,
 }] as Post[];
